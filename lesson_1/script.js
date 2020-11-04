@@ -97,7 +97,7 @@
 ////console.log(typeof(Boolean("5")));
 
 ////// 3)
-////console.log(typeof(!!"5"));
+//console.log(typeof(!!"5"));
 
 ////let num = 50;
 
@@ -120,5 +120,44 @@
 //    console.log(i);
 //}
 
+//let num = 20;
 
-console.log(0 || "" || undefined || falsе);
+//function showFirstMessage(text) {
+//    alert(text);
+
+//    console.log(num);
+//}
+
+//showFirstMessage("Hello World");
+//console.log(num);
+
+//let calc = function calc(a,b) {
+//    return (a + b);
+//}
+
+//let calc = (a,b) => a + b
+
+//console.log(calc(3,4));
+//console.log(calc(2,2));
+
+
+
+function retVar() {
+    let num = 50;
+    return num;
+}
+
+let anotherNum = retVar();
+console.log(anotherNum);
+
+let str = "Test";
+console.log(str.toUpperCase());
+console.log(str.toLowerCase());
+
+let twelve = "12.2px";
+
+//console.log(Math.round(twelve));
+
+console.log(parseInt(twelve));
+console.log(parseFloat(twelve));
+
