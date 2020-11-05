@@ -207,9 +207,9 @@
 ////    console.log(arr[i])
 ////}
 
-arr.forEach(function(item, i, mass) {
-    console.log(i + ': ' + item + ' (массив: ' + mass + ')');
-})
+//arr.forEach(function(item, i, mass) {
+//    console.log(i + ': ' + item + ' (массив: ' + mass + ')');
+//})
 
 //console.log(arr);
 
@@ -241,7 +241,7 @@ arr.forEach(function(item, i, mass) {
 //        return a-b;
 //    }
 
-//console.log(i);
+//console.log(arr);
 
 //let soldier = {
 //    health: 400,
@@ -256,3 +256,47 @@ arr.forEach(function(item, i, mass) {
 
 //console.log(john);
 //console.log(john.armor);
+
+
+let box = document.getElementById("box"),
+    btn = document.getElementsByTagName("button"),
+    circle = document.getElementsByClassName("circle"),
+    heart = document.querySelectorAll(".heart"),
+    oneHeart = document.querySelector(".selector"),
+    wrapper = document.querySelector('.wrapper');
+
+box.style.backgroundColor = 'blue';
+btn[1].style.borderRadius = '100%';
+
+circle[0].style.backgroundColor = 'red';
+circle[1].style.backgroundColor = 'yellow';
+circle[2].style.backgroundColor = 'green';
+
+//for (let i = 0; i < heart.length; i++) {
+//    heart[i].style.backgroundColor = 'blue';
+//}
+
+// callback функция - функция внутри функции, для соблюдения стройгой последовательности
+
+heart.forEach(function(item, i, arr) { 
+    item.style.backgroundColor = 'green';
+});
+
+let div = document.createElement('div'),
+    text = document.createTextNode('Тут был я');
+
+div.classList.add('black');
+
+//div.innerHTML = '<h1>Hello World!</h1>';
+div.textContent = 'Hello World!';
+
+
+//document.body.appendChild(div);
+//wrapper.appendChild(div);
+document.body.insertBefore(div, circle[0]);
+document.body.removeChild(circle[1]);
+wrapper.removeChild(heart[1]);
+
+document.body.replaceChild(btn[1], circle[1]);
+
+console.log(div);
