@@ -363,8 +363,8 @@ let sum = function(a, b) {
 // touchleave
 // touchcancel
 
-window.addEventListener('DOMContentLoaded', function() {
-    let box = document.querySelector('.box');
+//window.addEventListener('DOMContentLoaded', function() {
+//    let box = document.querySelector('.box');
 
     //box.addEventListener('touchstart', function(e) {
     //    e.preventDefault();
@@ -375,10 +375,10 @@ window.addEventListener('DOMContentLoaded', function() {
 
     //});
 
-    box.addEventListener('touchmove', function(e) {
-        e.preventDefault();
-        console.log('Red box: ' + e.touches[0].pageX);
-    });
+    //box.addEventListener('touchmove', function(e) {
+    //    e.preventDefault();
+    //    console.log('Red box: ' + e.touches[0].pageX);
+    //});
 
     //box.addEventListener('touchend', function(e) {
     //    e.preventDefault();
@@ -410,6 +410,6 @@ window.addEventListener('DOMContentLoaded', function() {
     //let reg = /\d/g;
     //console.log(ans.match(reg));
 
-    let str = 'My name is R2D2';
-    console.log(str.match(/\w\d\w\d/i/));
-});
+//    let str = 'My name is R2D2';
+//    console.log(str.match(/\w\d\w\d/i/));
+//});
