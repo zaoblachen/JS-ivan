@@ -1,4 +1,4 @@
-.box {
+/*.box {
     width: 150px;
     height: 150px;
     background-color: red;
@@ -75,4 +75,18 @@
       margin-bottom: 30px;
       margin-top: 30px;
       color: #fff;
-  }
+  }*/
+
+.box {
+    height: 200px;
+    width: 200px;
+    background: red;
+}
+
+.wrapper {
+    padding: 20px 10px 20px;
+}
+
+button {
+    height: 30px;
+    }

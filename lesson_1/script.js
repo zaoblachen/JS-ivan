@@ -258,19 +258,19 @@
 //console.log(john.armor);
 
 
-let box = document.getElementById("box"),
-    btn = document.getElementsByTagName("button"),
-    circle = document.getElementsByClassName("circle"),
-    heart = document.querySelectorAll(".heart"),
-    oneHeart = document.querySelector(".selector"),
-    wrapper = document.querySelector('.wrapper');
+//let box = document.getElementById("box"),
+//    btn = document.getElementsByTagName("button"),
+//    circle = document.getElementsByClassName("circle"),
+//    heart = document.querySelectorAll(".heart"),
+//    oneHeart = document.querySelector(".selector"),
+//    wrapper = document.querySelector('.wrapper');
 
-box.style.backgroundColor = 'blue';
-btn[1].style.borderRadius = '100%';
+//box.style.backgroundColor = 'blue';
+//btn[1].style.borderRadius = '100%';
 
-circle[0].style.backgroundColor = 'red';
-circle[1].style.backgroundColor = 'yellow';
-circle[2].style.backgroundColor = 'green';
+//circle[0].style.backgroundColor = 'red';
+//circle[1].style.backgroundColor = 'yellow';
+//circle[2].style.backgroundColor = 'green';
 
 //for (let i = 0; i < heart.length; i++) {
 //    heart[i].style.backgroundColor = 'blue';
@@ -278,25 +278,138 @@ circle[2].style.backgroundColor = 'green';
 
 // callback функция - функция внутри функции, для соблюдения стройгой последовательности
 
-heart.forEach(function(item, i, arr) { 
-    item.style.backgroundColor = 'green';
-});
+//heart.forEach(function(item, i, arr) { 
+//    item.style.backgroundColor = 'green';
+//});
 
-let div = document.createElement('div'),
-    text = document.createTextNode('Тут был я');
+//let div = document.createElement('div'),
+//    text = document.createTextNode('Тут был я');
 
-div.classList.add('black');
+//div.classList.add('black');
 
 //div.innerHTML = '<h1>Hello World!</h1>';
-div.textContent = 'Hello World!';
+//div.textContent = 'Hello World!';
 
 
 //document.body.appendChild(div);
 //wrapper.appendChild(div);
-document.body.insertBefore(div, circle[0]);
-document.body.removeChild(circle[1]);
-wrapper.removeChild(heart[1]);
+//document.body.insertBefore(div, circle[0]);
+//document.body.removeChild(circle[1]);
+//wrapper.removeChild(heart[1]);
 
-document.body.replaceChild(btn[1], circle[1]);
+//document.body.replaceChild(btn[1], circle[1]);
 
-console.log(div);
+//console.log(div);
+
+//let btn = document.querySelectorAll('button'),
+//    wrap = document.querySelector('.wrapper'),
+//    link = document.querySelector('a');
+
+//btn[0].onclick = function () {
+//    alert('Вы нажали первую кнопку');
+//};
+
+//btn[0].onclick = function () {
+//    alert('Вы опять нажали первую кнопку');
+//};
+
+//btn[0].addEventListener('click', function(event) {
+//    let target = event.target;
+//    target.style.display = 'none';
+//    console.log('Произошло событие: ' + event.type + ' на элементе ' + event.target);
+//});
+
+//wrap.addEventListener('click', function() {
+//    console.log('Произошло событие: ' + event.type + ' на элементе ' + event.target);
+//});
+
+
+//link.addEventListener('click', function(event) {
+//    event.preventDefault();
+//    console.log('Произошло событие: ' + event.type + ' на элементе ' + event.target);
+//});
+
+//btn.forEach(function(item) {
+//    item.addEventListener('mouseleave', function(event) {
+//        console.log("Вышли!");
+//    })
+//});
+
+//btn[0].addEventListener('click', function() {
+//    alert('Вы опять нажали первую кнопку');
+//});
+
+//btn[0].addEventListener('mouseenter', function() {
+//    alert('Вы навели на первую кнопку');
+//})
+
+/* Стрелочная функция */ 
+
+//let sum = (a, b) => a + b;
+
+/* Более короткая форма для:
+
+let sum = function(a, b) {
+  return a + b;
+};
+*/
+
+//alert( sum(1, 2) );
+
+// touchstart
+// touchmove
+// touchend
+// touchenter
+// touchleave
+// touchcancel
+
+window.addEventListener('DOMContentLoaded', function() {
+    let box = document.querySelector('.box');
+
+    //box.addEventListener('touchstart', function(e) {
+    //    e.preventDefault();
+    //    console.log(e.target);
+    //    console.log(e.touches[0].target);
+    //    console.log(e.changedTouches);
+    //    console.log(e.targetTouches);
+
+    //});
+
+    box.addEventListener('touchmove', function(e) {
+        e.preventDefault();
+        console.log('Red box: ' + e.touches[0].pageX);
+    });
+
+    //box.addEventListener('touchend', function(e) {
+    //    e.preventDefault();
+    //    console.log('Red box: touchend');
+    //});
+
+    //new RegExp('pattern', 'flags');
+    ///pattern/
+
+
+
+    //console.log(ans.search(reg));
+    //console.log(ans.match(reg));
+    //console.log(reg.test(ans));
+
+    // i - неважен регистр
+    // g - глобальные
+    // m - многострочность
+
+    // \d - число \D - не число
+    // \w W слово/не слово
+    // \s S пробел / не пробел
+
+    //let pass = prompt('Введите пароль');
+    //console.log(pass.replace(/./g, "*"));
+    //alert('12-45-67'.replace(/-/g, ':'));
+
+    //let ans = prompt("Введите число");
+    //let reg = /\d/g;
+    //console.log(ans.match(reg));
+
+    let str = 'My name is R2D2';
+    console.log(str.match(/\w\d\w\d/i/));
+});

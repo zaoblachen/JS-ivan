@@ -1,65 +1,148 @@
-//·        Получить кнопку "Начать расчет" через id
-
 let btnStart = document.getElementById("start");
-console.log(btnStart);
 
+let budgetValue = document.getElementsByClassName("budget-value")[0],
+    daybudgetValue = document.getElementsByClassName("daybudget-value")[0],
+    levelValue = document.getElementsByClassName("level-value")[0],
+    expensesValue = document.getElementsByClassName("expenses-value")[0],
+    optionalexpensesValue = document.getElementsByClassName("optionalexpenses-value")[0],
+    incomeValue = document.getElementsByClassName("income-value")[0],
+    monthSavingsValue = document.getElementsByClassName("monthsavings-value")[0],
+    yearSavingsValue = document.getElementsByClassName("yearsavings-value")[0],
 
-//·        Получить все блоки в правой части программы через классы (которые имеют класс название-value, начиная с // и заканчивая //)
+    expensesItem = document.getElementsByClassName("expenses-item"),
+    expensesItemBtn = document.getElementsByTagName("button")[0],
+    optionalexpensesBtn = document.getElementsByTagName("button")[1],
+    countBudgetBtn = document.getElementsByTagName("button")[2],
+    optionalexpensesItem = document.querySelectorAll(".optionalexpenses-item"),
+    chooseIncome = document.querySelector(".choose-income"),
+    checkSavings = document.querySelector(".checksavings"),
+    chooseSum = document.querySelector(".choose-sum"),
+    choosePercent = document.querySelector(".choose-percent"),
+    yearValue = document.querySelector(".year-value"),
+    monthValue = document.querySelector(".month-value"),
+    dayValue = document.querySelector(".day-value");
 
-let budgetValue = document.querySelector(".budget-value"),
-    daybudgetValue = document.querySelector(".daybudget-value"),
-    levelValue = document.querySelector(".level-value"),
-    expensesValue = document.querySelector(".expenses-value"),
-    optionalexpensesValue = document.querySelector(".optionalexpenses-value"),
-    incomeValue = document.querySelector(".income-value"),
-    monthsavingsValue = document.querySelector(".monthsavings-value"),
-    yearsavingsValue = document.querySelector(".yearsavings-value");
+let money, time;
 
-console.log(budgetValue);
-console.log(daybudgetValue);
-console.log(levelValue);
-console.log(expensesValue);
-console.log(optionalexpensesValue);
-console.log(monthsavingsValue);
-console.log(yearsavingsValue);
+btnStart.addEventListener('click', function () {
+    time = prompt("Введите дату", "YYYY-MM-DD");
+    money = +prompt("Ваш бюджет на месяц?");
 
+    while (isNaN(money) || money == "" || money == null) {
+        money = +prompt("Ваш бюджет на месяц?");
+    }
+    appData.budjet = money;
+    appData.timeData = time;
+    budgetValue.textContent = money.toFixed();
+    yearValue.value = new Date(Date.parse(time)).getFullYear();
+    monthValue.value = new Date(Date.parse(time)).getMonth() + 1;
+    dayValue.value = new Date(Date.parse(time)).getDay();
+});
 
-//·        Получить поля(input) c обязательными расходами через класс. (class=”expenses-item”)
+expensesItemBtn.addEventListener('click', function () {
+    let sum = 0;
 
-let expensesItem = document.querySelectorAll(".expenses-item");
-console.log(expensesItem);
+    for (let i = 0; i < expensesItem.length; i++) {
+        let a = expensesItem[i].value,
+            b = expensesItem[++i].value;
 
+        if (typeof (a) === 'string' &&
+            (typeof (a) != null &&
+                (typeof (b) != null &&
+                    a != '' &&
+                    b != '' &&
+                    a.length < 50))) {
+            console.log("Всё верно");
+            appData.expenses[a] = b;
+            sum += +b;
+        } else {
+            i = i - 1;
+        }
+    }
+    expensesValue.textContent = sum;
+});
 
-//·        Получить кнопки “Утвердить” и “Рассчитать” через Tag, каждую в своей переменной. 
+optionalexpensesBtn.addEventListener('click', function () {
+    for (let i = 0; i < optionalexpensesItem.length; i++) {
+        let opt = optionalexpensesItem[i].value;
+        appData.optionalExpenses[i] = opt;
+        optionalexpensesValue.textContent += appData.optionalExpenses[i] + ' ';
+    }
+});
 
-let expensesItemBtn = document.getElementsByTagName("button");
-console.log(expensesItemBtn);
+countBudgetBtn.addEventListener('click', function () {
 
-let optionalexpensesBtn = document.getElementsByTagName("button");
-console.log(optionalexpensesBtn);
+    if (appData.budjet != undefined) {
+        appData.moneyPerDay = (appData.budjet / 30).toFixed();
+        daybudgetValue.textContent = appData.moneyPerDay;
 
-let countBudgetBtn = document.getElementsByTagName("button");
-console.log(countBudgetBtn);
+        if (appData.moneyPerDay < 100) {
+            levelValue.textContent = "Минимальный уровень достатка";
+        } else if (appData.moneyPerDay > 100 && appData.moneyPerDay < 2000) {
+            levelValue.textContent = "Средний уровень достатка";
+        } else if (appData.moneyPerDay > 2000) {
+            levelValue.textContent = "Высокий уровень достатка";
+        } else {
+            levelValue.textContent = "Произошла ошибка";
+        }
+    } else {
+        daybudgetValue.textContent = 'Произошла ошибка';
+    }
+});
 
-//·        Получить поля для ввода необязательных расходов (optionalexpenses-item) при помощи querySelectorAll
+chooseIncome.addEventListener('input', function () {
+    let items = chooseIncome.value;
+    appData.income = items.split(', ');
+    incomeValue.textContent = appData.income;
+});
 
-let optionalexpensesItem = document.querySelectorAll(".optionalexpenses-item");
-console.log(optionalexpensesItem);
+checkSavings.addEventListener('click', function () {
+    if (appData.savings == true) {
+        appData.savings = false;
+    } else {
+        appData.savings = true;
+    }
+});
 
-//·        Получить оставшиеся поля через querySelector (статьи возможного дохода, чекбокс, сумма, процент, год, месяц, день)
+chooseSum.addEventListener('input', function () {
+    if (appData.savings == true) {
+        let sum = +chooseSum.value,
+            percent = +choosePercent.value;
 
-let chooseIncome = document.querySelector(".choose-income");
-let checkSavings = document.querySelector(".checksavings");
-let chooseSum = document.querySelector(".choose-sum");
-let choosePercent = document.querySelector(".choose-percent");
-let yearValue = document.querySelector(".year-value");
-let monthValue = document.querySelector(".month-value");
-let dayValue = document.querySelector(".day-value");
+        appData.monthIncome = sum / 100 / 12 * percent;
+        appData.yearIncome = sum / 100 * percent;
 
+        monthSavingsValue.textContent = appData.monthIncome.toFixed(1);
+        yearSavingsValue.textContent = appData.yearIncome.toFixed(1);
+    }
+});
 
-//3) Проверить, чтобы все работало и не было ошибок в консоли
+choosePercent.addEventListener('input', function () {
+    if (appData.savings == true) {
+        let sum = +chooseSum.value,
+            percent = +choosePercent.value;
 
-//4) Добавить папку с уроком на свой GitHub
+        appData.monthIncome = sum / 100 / 12 * percent;
+        appData.yearIncome = sum / 100 * percent;
 
-//Вопросы к этому заданию
-//Как можно изменить размер шрифта элемента при помощи JS?
+        monthSavingsValue.textContent = appData.monthIncome.toFixed(1);
+        yearSavingsValue.textContent = appData.yearIncome.toFixed(1);
+    }
+});
+
+let appData = {
+    budjet: money,
+    timeData: time,
+    expenses: {},
+    optionalExpenses: {},
+    income: [],
+    savings: false,
+
+    insideAppData: function () {
+        console.log("Наша программа включает в себя данные: ");
+        for (let key in appData) {
+            console.log(key)
+        }
+    },
+
+};
